@@ -50,11 +50,13 @@ public String toString() {
 	return "Eps [id=" + id + ", id_eps=" + id_eps + ", nombre=" + nombre + ", sede="
 			+ sede + ",direccion=" + direccion + ", telefono=" + telefono + "]";
 }
-public Eps(long id, int id_eps, String nombre, String direccion, int telefono) {
+
+public Eps(long id, int id_eps, String nombre, String sede, String direccion, int telefono) {
 	super();
 	this.id = id;
-	this.id_sede = id_sede;
+	this.id_eps = id_eps;
 	this.nombre = nombre;
+	this.sede = sede;
 	this.direccion = direccion;
 	this.telefono = telefono;
 }
