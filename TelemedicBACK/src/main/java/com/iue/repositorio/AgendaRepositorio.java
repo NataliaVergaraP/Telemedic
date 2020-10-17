@@ -1,0 +1,16 @@
+package com.iue.repositorio;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
+
+import com.iue.entidad.Agenda;
+@Repository
+public interface AgendaRepositorio extends CrudRepository <Agenda, Long>
+{
+
+		List<Agenda> findByMes(String mes);	
+		List<Agenda> findByMesContaining(String mes);
+	
+}
