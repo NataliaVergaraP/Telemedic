@@ -1,0 +1,6 @@
+projectKey=key:TelemedicBACK
+serverUrl=http://localhost:9000
+serverVersion=8.5.0.37579
+dashboardUrl=http://localhost:9000/dashboard?id=key%3ATelemedicBACK
+ceTaskId=AXVa2wSaIDaWwx168NtJ
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXVa2wSaIDaWwx168NtJ
