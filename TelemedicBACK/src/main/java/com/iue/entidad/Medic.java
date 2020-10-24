@@ -1,24 +1,56 @@
-package com.app.entidades;
+package com.iue.entidad;
 
-public class Medicos {
-private long id;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Map;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name = "TBL_MEDICOS")
+public class Medic  implements Serializable {
+private static final long serialVersionUID = 1L;
+
+@Id
+//@GeneratedValue(strategy = GenerationType.AUTO)   * Otras BD
+@GeneratedValue(  strategy= GenerationType.AUTO,   generator="native")
+@GenericGenerator( name = "native",  strategy = "native"  )
+@Column(name = "id_medico")
 private int id_medico;
-private int tipo_documento;
-private String nombre;
-private String apellido;
-private String email;
-private String direccion;
-private String Especialidad;
-private String canal;
-private int telefono;
-public long getId() {
-	return id;
-}
 
-public void setId(long id) {
-	this.id = id;
-}
-public int getId_paciente() {
+@Column(name = "tipo_documento")
+private int tipo_documento;
+
+@Column(name = "nombre")
+private String nombre;
+
+@Column(name = "apellido")
+private String apellido;
+
+@Column(name = "email")
+private String email;
+
+@Column(name = "direccion")
+private String direccion;
+
+@Column(name = "Especialidad")
+private String Especialidad;
+
+@Column(name = "canal")
+private String canal;
+
+@Column(name = "telefono")
+private int telefono;
+
+
+public long getId_paciente() {
 	return id_medico;
 }
 public void setId_paciente(int id_medico) {
@@ -74,14 +106,13 @@ public void setTelefono(int telefono) {
 }
 @Override
 public String toString() {
-	return "Medicos [id=" + id + ", id_medico=" + id_medico + ", tipo_documento=" + tipo_documento + ", nombre="
+	return "Medicos [id_medico=" + id_medico + ", tipo_documento=" + tipo_documento + ", nombre="
 			+ nombre + ", apellido=" + apellido + ", email=" + email + ", direccion=" + direccion + ", telefono="
 			+ telefono + ", Especialidad=+"+ Especialidad + ", canal=+\"+ canal + \"]";
 }
-public Medicos(long id, int id_medico, int tipo_documento, String nombre, String apellido, String email, String canal, String Especialidad,
+public Medic(int id_medico, int tipo_documento, String nombre, String apellido, String email, String canal, String Especialidad,
 		String direccion, int telefono) {
 	super();
-	this.id = id;
 	this.id_medico = id_medico;
 	this.tipo_documento = tipo_documento;
 	this.nombre = nombre;
@@ -92,9 +123,17 @@ public Medicos(long id, int id_medico, int tipo_documento, String nombre, String
 	this.canal = direccion;
 	this.Especialidad = Especialidad;
 }
-public Medicos() {
+public Medic() {
 	super();
 	// TODO Auto-generated constructor stub
+}
+public void setMedicList(ArrayList<Medic> list) {
+	// TODO Auto-generated method stub
+	
+}
+public Map<String, ?> getId() {
+	// TODO Auto-generated method stub
+	return null;
 }
 
 
