@@ -1,0 +1,138 @@
+package com.iue.controlador;
+import java.net.URI;
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.iue.entidad.Pacientes;
+import com.iue.entidad.Pacientes;
+import com.iue.repositorio.PacientesRepositorio;
+
+@RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping(path="/pacientesAPI")
+public class PacientesControlador {
+		@Autowired
+	    private PacientesRepositorio pacientesRepositorio;
+
+	    //***Api Final Front
+	    @PostMapping(path= "/addpaciente", consumes = "application/json", produces = "application/json")
+		public Pacientes addNewPacientesApi(@RequestBody Pacientes pacientes) {
+	        //add resource
+	     	pacientes = pacientesRepositorio.save(pacientes);
+			return pacientes;
+		}
+	    
+	    //***Api Final Para FRONT
+	    @GetMapping(path= "/pacientesgetall", produces = "application/json")
+	    public Pacientes getAllPacientesApi() 
+	    {
+			Pacientes response = new Pacientes();
+			ArrayList<Pacientes> list = new ArrayList<>();
+			pacientesRepositorio.findAll().forEach(e -> list.add(e));
+			response.setPacienteList(list);
+	        return response;
+	    }
+	       
+	    //***Api Final Front
+	    @PostMapping(path= "/updatepacientes", consumes = "application/json", produces = "application/json")
+		public Pacientes savePacientesApi(@RequestBody Pacientes pacientes) {
+	        //add resource
+	     	pacientesRepositorio.save(pacientes);
+			return pacientes;
+		}
+	    //***Api Final Front
+		@PostMapping(path = "/pacientesremove", consumes = "application/json")
+		public @ResponseBody ResponseEntity<String> deletePacientesApi(@RequestBody Pacientes employe) {
+			pacientesRepositorio.deleteById(employe.getId());
+			return new ResponseEntity<String>(HttpStatus.OK);
+		}
+	    
+	    
+	    
+	    
+	    
+		
+		/* Otras Formas  pero Bajo jUnit Testing*/
+		@GetMapping(path="/pacientes", produces = "application/json")
+	    public Pacientes getPacientes() 
+	    {
+			Pacientes response = new Pacientes();
+			ArrayList<Pacientes> list = new ArrayList<>();
+			pacientesRepositorio.findAll().forEach(e -> list.add(e));
+			response.setPacienteList(list);
+	        return response;
+	    }
+	    
+	    @PostMapping(path= "/pacientes", consumes = "application/json", produces = "application/json")
+	    public ResponseEntity<Object> addPacientes(@RequestBody Pacientes pacientes) {       
+	                
+	        //add resource
+	    	pacientes = pacientesRepositorio.save(pacientes);
+	        
+	        //Create resource location
+	        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+	                                    .path("/{id}")
+	                                    .buildAndExpand(pacientes.getId())
+	                                    .toUri();
+
+	        //Send location in response
+	        return ResponseEntity.created(location).build();
+	    }
+	   
+	    
+	    
+		/* Otras Formas  pero sin jUnit Testing*/   
+
+		@GetMapping(path = "/getallpacientes")
+		public @ResponseBody Iterable<Pacientes> getAllPacientes() {
+			return pacientesRepositorio.findAll();
+		}
+
+		@GetMapping(path = "/addpacientes")
+		public @ResponseBody String addNewPacientes(@RequestParam int ls_tipoDocumento, @RequestParam int ls_documento, @RequestParam String ls_nombre, @RequestParam String ls_apellido, @RequestParam String ls_email, @RequestParam String ls_direccion, @RequestParam int ls_telefono) {
+	       pacientesRepositorio.save(new Pacientes((long)0,ls_tipoDocumento, ls_documento, ls_nombre, ls_apellido, ls_email,  ls_direccion, ls_telefono));
+			return "Saved";
+		}
+
+		@PostMapping(path = "/updatpacientes")
+		public @ResponseBody ResponseEntity<String> updateNewVehicle(@RequestBody Pacientes paciente) {
+			pacientesRepositorio.save(paciente);
+			return new ResponseEntity<String>(HttpStatus.OK);
+		}
+
+		@PostMapping(path = "/removepacientes")
+		public @ResponseBody ResponseEntity<String> removeVehicle(@RequestBody Pacientes paciente) {
+			pacientesRepositorio.delete(paciente);
+			return new ResponseEntity<String>(HttpStatus.OK);
+		}
+
+		 @GetMapping(path = "/getpacientesbydocumento")
+		public @ResponseBody Iterable<Pacientes> getByDocumento(@RequestParam int documento) {
+			return pacientesRepositorio.findByDocumento(documento);
+		}
+
+		@GetMapping(path = "/findBypacientesdocumentocontaining")
+		public @ResponseBody Iterable<Pacientes> findByDocumentoContaining(@RequestParam int documento) {
+			return pacientesRepositorio.findByDocumentoContaining(documento);
+
+		} 
+	    
+	    
+	    
+	    
+	    
+	}
+
+

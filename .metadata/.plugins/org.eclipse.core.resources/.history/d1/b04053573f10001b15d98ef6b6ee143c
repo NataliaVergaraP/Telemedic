@@ -1,0 +1,140 @@
+package com.iue.entidad;
+
+import java.util.ArrayList;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
+public class Pacientes {
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue( strategy= GenerationType.AUTO, generator="native")
+	@GenericGenerator( name = "native", strategy = "native")
+	@Column( name= "id")
+	private long id;
+	
+	@Column(name = "tipoDocumento")
+	private int tipoDocumento;
+	
+	@Column(name = "documento")
+	private int documento;
+	
+	@Column( name = "nombre")
+	private String nombre;
+	
+	@Column( name = "apellido")
+	private String apellido;
+	
+	@Column(name = "email")
+	private String email;
+	
+	@Column(name = "direccion")
+	private String direccion;
+	
+	@Column(name = "telefono")
+	private int telefono;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public int getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(int tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public int getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(int documento) {
+		this.documento = documento;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public int getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Pacientes [id=" + id + ", tipoDocumento=" + tipoDocumento + ", documento=" + documento + ", nombre="
+				+ nombre + ", apellido=" + apellido + ", email=" + email + ", direccion=" + direccion + ", telefono="
+				+ telefono + "]";
+	}
+
+	public Pacientes(long id, int tipoDocumento, int documento, String nombre, String apellido, String email,
+			String direccion, int telefono) {
+		super();
+		this.id = id;
+		this.tipoDocumento = tipoDocumento;
+		this.documento = documento;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.direccion = direccion;
+		this.telefono = telefono;
+	}
+
+	public Pacientes() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void setPacientesList(ArrayList<Pacientes> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

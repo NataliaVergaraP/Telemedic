@@ -1,0 +1,5 @@
+package com.iue.repositorio;
+
+public interface PacientesRepositorio {
+
+}

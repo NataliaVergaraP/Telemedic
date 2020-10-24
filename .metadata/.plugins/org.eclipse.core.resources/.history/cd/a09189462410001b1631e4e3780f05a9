@@ -1,0 +1,4 @@
+#Servidor
+server.port=8282
+
+#Base de datos

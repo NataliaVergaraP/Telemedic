@@ -1,0 +1,19 @@
+package com.iue.repositorio;
+
+import org.springframework.stereotype.Repository;
+
+import com.iue.entidad.Pacientes;
+
+import antlr.collections.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+
+@Repository
+public interface PacientesRepositorio extends CrudRepository <Pacientes, Long>
+{
+
+		List findByDocumento(String documento);	
+		List findByDocumentoContaining( String documento);
+	
+}
