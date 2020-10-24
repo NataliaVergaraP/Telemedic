@@ -1,0 +1,33 @@
+package com.iue.entidad;
+
+public class Pacientes {
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue( strategy= GenerationType.AUTO, generator="native")
+	@GenericGenerator( name = "native", strategy = "native")
+	@Column( name= "id")
+	private long id;
+	
+	@Column(name = "tipoDocumento")
+	private int tipoDocumento;
+	
+	@Column(name = "documento")
+	private int documento;
+	
+	@Column( name = "nombre")
+	private String nombre;
+	
+	@Column( name = "apellido")
+	private String apellido;
+	
+	@Column(name = "email")
+	private String email;
+	
+	@Column(name = "direccion")
+	private String direccion;
+	
+	@Column(name = "telefono")
+	private int telefono;
+
+}

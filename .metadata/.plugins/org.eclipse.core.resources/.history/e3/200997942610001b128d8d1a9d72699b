@@ -1,0 +1,10 @@
+#Servidor
+server.port=8282
+
+#Base de datos
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+spring.h2.console.enabled=true
+
+#Base de datos - Conectividad
+
